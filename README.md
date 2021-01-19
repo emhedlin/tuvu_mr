@@ -13,19 +13,19 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 
 ```
 ├── /data
-│   ├── resight.csv                             <- merged tagging and resights datasets
-│   ├── resight_balanced.csv                    <- produced with clean.R, closer to MR data
-│   ├── sighting_data.xlsx                      <- reference only 
-│   ├── Natal Dispersal TUVU20Mar2019ZJz.xlsx   <- reference only        
-│   ├── banded.csv                              <- reference only 
-│   ├── 12.Dec.2019_TUVU_Distance_Bearing_KG.xlsx <- reference only           
-│   └── 12.Dec.2019_TUVU_All_Sighting_Data.xlsx   <- reference only           
+│    ├── resight.csv                             <- merged tagging and resights datasets
+│    ├── resight_balanced.csv                    <- produced with clean.R, closer to MR data
+│    ├── sighting_data.xlsx                      <- reference only 
+│    ├── Natal Dispersal TUVU20Mar2019ZJz.xlsx   <- reference only        
+│    ├── banded.csv                              <- reference only 
+│    ├── 12.Dec.2019_TUVU_Distance_Bearing_KG.xlsx <- reference only           
+│    └── 12.Dec.2019_TUVU_All_Sighting_Data.xlsx   <- reference only           
 │
 ├── /scripts 				
-│   └── clean.R       <- produces data/resight_balanced.csv
+│    └── clean.R       <- produces data/resight_balanced.csv
 │
 ├── /documents 				
-│   └── tuvu.jpg      <- basic tagging location map displayed on readme
+│    └── tuvu.jpg      <- basic tagging location map displayed on readme
 │
 ```
 

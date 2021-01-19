@@ -1,6 +1,11 @@
 # TUVU Mark Recap
 
-The dataset summarizes ~ 20 years of wing-tagging efforts of Turkey Vultures. Tagging effort was primarily in Saskatchewan, with some observations in AB. Resighting locations are dispersed throughout AB and SK, and all the way down to wintering grounds in South America. 
+The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by Stuart Houston. Tagging was primarily conducted on hatch-year individuals, but some adults were trapped by blocking all exits in the nesting location (usually an abandoned farm house). Work was mostly completed in Saskatchewan with some observations from Alberta. Resighting locations are dispersed throughout AB and SK, and all the way down to wintering grounds in South America. Tagged individuals are rarely observed in the second year, current thinking is that they stay relatively far south. 
+
+### 
+*note:* I know satellite transmitter data exists, but I need to find it. If I can, we can integrate known-fate estimations of survival with mark-recapture estimates.
+
+
 
 ```
 ├── /Accessory files         <- legacy files - probably not useful
@@ -21,3 +26,4 @@ The dataset summarizes ~ 20 years of wing-tagging efforts of Turkey Vultures. Ta
 ```
 
 
+Data was initially entered from raw data sheets and cleaned by Kyron G. Project currently includes Erik Hedlin, Tom Perry, and Ryan Fisher.

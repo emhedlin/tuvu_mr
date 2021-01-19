@@ -5,6 +5,10 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 ### 
 *note:* I know satellite transmitter data exists, but I need to find it. If I can, we can integrate known-fate estimations of survival with mark-recapture estimates.
 
+<p float="center">
+  <img src="documents/tuvu.jpg" width="900" />
+</p>
+
 
 
 ```

@@ -12,21 +12,21 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 
 
 ```
-├── /Accessory files         <- legacy files - probably not useful
-|
-├── /Tutorial_files
-│   ├── AN_obj.names              <- classes for the adult/nestling work
-│   ├── Evaluate.md               <- instructions on how to run the models after training 
-│   ├── Training_model.md         <- instructions on how to train the model
-│   ├── band_obj.names            <- classes for band detection 
-│   ├── cropimages.py             <- remove the Reconyx info in each image
-│   ├── egg_obj.names             <- classes for egg detection
-│   ├── my_object_detection.py    <- python script to run your model across all images (produces a csv output)
-│   ├── object_detection_yolo.py  <- runs the model on one image as a test, produces an image with bounding box
-│   ├── od_functions.oy           <- functions called from my_object_detection.py
-│   └── splitTrainAndTest.py      <- 
+├── /data
+│   ├── resight.csv                             <- merged tagging and resights datasets
+│   ├── resight_balanced.csv                    <- produced with clean.R, closer to MR data
+│   ├── sighting_data.xlsx                      <- reference only 
+│   ├── Natal Dispersal TUVU20Mar2019ZJz.xlsx   <- reference only        
+│   ├── banded.csv                              <- reference only 
+│   ├── 12.Dec.2019_TUVU_Distance_Bearing_KG.xlsx <- reference only           
+│   └── 12.Dec.2019_TUVU_All_Sighting_Data.xlsx   <- reference only           
 │
-├── /manuscript 			<- TeX files for manuscript development	             
+├── /scripts 				
+│   └── clean.R       <- produces data/resight_balanced.csv
+├── /documents 				
+│   └── tuvu.jpg      <- basic tagging location map displayed on readme
+
+
 ```
 
 

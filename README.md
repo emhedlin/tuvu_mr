@@ -7,7 +7,9 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 
 <p float="center">
   <img src="documents/tuvu.jpg" width="900" />
+  <img src="documents/n_individuals.png" width="900" />
 </p>
+
 
 
 

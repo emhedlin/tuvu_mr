@@ -27,9 +27,9 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 ├── /scripts 				
 │    └── clean.R       <- produces data/resight_balanced.csv
 │
-├── /documents 				
-│    └── tuvu.jpg      <- basic tagging location map displayed on readme
-│
+└── /documents 				
+     └── tuvu.jpg      <- basic tagging location map displayed on readme
+
 ```
 
 ### Authors

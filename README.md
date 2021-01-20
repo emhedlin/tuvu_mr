@@ -32,9 +32,9 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 ```
 
 ### Authors
+* Erik Hedlin
 * Stuart Houston
 * Marten Stoffel
-* Erik Hedlin
 * Ryan Fisher
 * Tom Perry
 * Jean-Francois Therrien

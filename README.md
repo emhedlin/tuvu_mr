@@ -4,6 +4,7 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 
 ### 
 *note:* I know a fair number of satellite transmitters were fit to adults, but I need to find the data. If I can, we can integrate known-fate estimations of adult survival with mark-recapture estimates.
+*update:* Apparently Hawk Mountain owns the transmitter data. Talked to Jean-Francois Therrien, and he's down to collaborate. Will chat with him more later this week about the details.
 
 <p float="center">
   <img src="documents/tuvu.jpg" width="900" />

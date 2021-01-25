@@ -11,6 +11,12 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
   <img src="documents/n_individuals.png" width="900" />
 </p>
 
+And transmitter data downloaded from [movebank.org](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study217784323). Code in ```clean.R``` to isolate SK birds. Because of its size, transmitter data has been compressed to parquet, use ```arrow::read_parquet``` to load.
+
+
+<p float="center">
+  <img src="documents/transmitter_data.png" width="900" />
+</p>
 
 
 

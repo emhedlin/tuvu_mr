@@ -91,3 +91,42 @@ ggplot() +
   theme_nuwcru()
 
 
+
+# Movement ----------------------------------------------------------------
+
+# *Isolate SK ----
+
+tran <- arrow::read_parquet("data/hm_transmitter.parquet")
+
+# rename columns, remove backticks etc.
+tran <- tran %>%
+  set_names(~ str_to_lower(.) %>%
+              str_replace_all("-", "_") %>%
+              str_replace_all("`", "") %>%
+              str_replace_all(":", "_"))
+
+# Spatial limits
+
+# west long > -113
+# east long < -91
+# northing lat > 48
+
+tran_sk <- tran %>%
+  filter(location_lat >= 47) %>%
+  mutate(year = lubridate::year(timestamp))
+
+# SK individuals, number of fixes per year
+tran_sk %>%
+  group_by(tag_local_identifier, year) %>%
+  tally()
+
+# date of first fix by individual
+tran_sk %>%
+  group_by(tag_local_identifier) %>%
+  summarize(first_fix = min(year)) %>%
+  group_by(first_fix) %>%
+  tally()
+
+write.csv(tran_sk, "data/tran_sk.csv")
+
+

@@ -24,6 +24,7 @@ And transmitter data downloaded from [movebank.org](https://www.movebank.org/cms
 ├── /data
 │    ├── resight.csv                             <- merged tagging and resights datasets
 │    ├── resight_balanced.csv                    <- produced with clean.R, closer to MR data
+│    ├── hm_transmitter.parquet                  <- transmitter data from movebank, converted to parquet for compression
 │    ├── sighting_data.xlsx                      <- reference only 
 │    ├── Natal Dispersal TUVU20Mar2019ZJz.xlsx   <- reference only        
 │    ├── banded.csv                              <- reference only 

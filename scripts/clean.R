@@ -112,7 +112,7 @@ tran <- tran %>%
 # northing lat > 48
 
 tran_sk <- tran %>%
-  filter(location_lat >= 47) %>%
+  filter(location_lat >= 47 & location_long > -113 & location_long < -91) %>%
   mutate(year = lubridate::year(timestamp))
 
 # SK individuals, number of fixes per year

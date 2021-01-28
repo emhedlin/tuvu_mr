@@ -10,13 +10,12 @@ library(R2jags)
 n <- 20                    # number of adults with transmitters
 n_years <- 17              # number of years
 phi_mean <- 0.65           # population average survival
+phi_lin <-  log(phi_mean/(1-phi_mean))
 first <- rpois(n, 5) + 1   # year of first capture
 first[first > n_years] <- n_years  # ensure date of capture isn't > 20
 
 year <- as.numeric(scale(1:n_years))
 individual <- rnorm(n)
-
-first[1]+1 : abs(first[1]-17)
 
 
 y <- phi <- matrix(NA, n, n_years, dimnames=list(paste("vulture", 1:n, sep=""), 
@@ -25,10 +24,12 @@ y <- phi <- matrix(NA, n, n_years, dimnames=list(paste("vulture", 1:n, sep=""),
 for(i in 1:n) {
   y[i, first[i]] <- 1
   for(t in (first[i]+1):n_years) {
-    phi[i, t] <- 0.65 + plogis(1*year[t] + 1*individual[i] + -0.5*t) # -0.5*t is age, where -0.5 describes the declining survival
+    phi[i, t] <- plogis(phi_lin + 1*year[t] + 1*individual[i] + -0.5*t) # -0.5*t is age, where -0.5 describes the declining survival
     y[i, t] <- rbinom(1, 1, y[i, t-1] * phi[i, t])
   }
 }
+
+
 
 last <- rep(NA, n)
 for(i in 1:n) {

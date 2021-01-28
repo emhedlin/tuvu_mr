@@ -5,7 +5,8 @@ library(nuwcru)
 dat <- read_csv("data/resight.csv")
 
 # distribution of ages at tagging
-table(dat$age)
+table(dat$age) 
+
 
 dat$age <- as.numeric(dat$age)
 
@@ -45,6 +46,10 @@ tuvu <- bind_rows(tuvu_ex_list) %>%
   arrange(tag, year) %>%
   filter(!is.na(year))
 
+tuvu %>% 
+  group_by(tag) %>%
+  group_split()
+
 tagged <- tuvu %>% 
   group_by(year) %>%
   filter(origin == 'y') %>%
@@ -76,8 +81,7 @@ age <- tuvu %>%
   filter(origin == 'n') %>%
   group_by(year, age) %>%
   tally()
-unique(age$age)
-max(age$age)
+
 ggplot() +
  geom_segment(data = filter(age, age == 1), aes(x = year-0.49, xend = year-0.49, y = 0, yend = n), colour = grey7) +
  geom_text(data = filter(age, age == 1), aes(x = year-0.43, y = n+0.5), label = "1", size = 2) +

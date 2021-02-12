@@ -3,9 +3,14 @@ library(nuwcru)
 
 
 dat <- read_csv("data/resight.csv")
-
+dat <- dat %>% filter(tag != "T55") # year is missing
 # distribution of ages at tagging
 table(dat$age) 
+
+# assign categorical ages, hy or ahy
+x <- dat %>% filter(origin == "y")
+x$age_at_first_cap <- ifelse(x$age == "0", "hy", "ahy")
+# dat <- x %>% select(tag, age_at_first_cap) %>% right_join(dat, by = "tag")
 
 
 # calculate age at each resight
@@ -13,8 +18,8 @@ tuvu <- dat %>%
   group_by(tag, year, origin, age, dead) %>% 
   tally() %>%
   group_by(tag) %>%
-  arrange(year, .by_group = TRUE) %>%
-  mutate(age_est = year - lag(year, default = first(year)) + lag(age, default = first(age))) 
+  arrange(year, .by_group = TRUE) # %>%
+  # mutate(age_est = year - lag(year, default = first(year)) + lag(age, default = first(age))) 
 
 # create df with entire date range for each individual
 empty <- expand.grid(tag = unique(tuvu$tag), year = unique(tuvu$year))
@@ -24,25 +29,95 @@ tuvu_ex <- empty %>%
   left_join(tuvu, by = c("tag", "year")) %>% 
   arrange(tag, year)
 
-# split balanced df into list by individual
-tuvu_ex_list <- tuvu_ex %>% 
-  group_by(tag) %>% 
-  group_split()
+# ch <- tuvu_ex %>%
+#   mutate(cap = ifelse(is.na(n), 0, 1)) %>%
+#   select(tag, year, cap) %>%
+#   left_join(select(x, tag, "age" = "age_at_first_cap"), by = "tag") %>%
+#   filter(!is.na(year)) %>%
+#   filter(!duplicated(tag, year))
+# 
+# ch <- ch %>% filter(!is.na(year))
+# ch %>% group_by(year, tag) %>% tally() %>% filter(n > 2)
+# ch %>% filter(year == 2003 & tag == "58H")
+# 
+# 
+# ch %>% select(-age) %>%
+#   pivot_wider(id_cols = tag, names_from = year, values_from = cap)
+# ?pivot_wider
 
-for ( i in 1:length(tuvu_ex_list)){
-  firstyear <- filter(tuvu_ex_list[[i]], origin == "y") 
-  firstyear <- firstyear$year - firstyear$age_est
-  tuvu_ex_list[[i]]$age_est <- tuvu_ex_list[[i]]$year - firstyear
-  tuvu_ex_list[[i]] <- filter(tuvu_ex_list[[i]], age_est >= 0)
-}
 
 
-tuvu <- bind_rows(tuvu_ex_list) %>% 
-  select(tag:origin, dead:n, "age" = "age_est") %>%
+
+
+
+
+
+
+
+
+
+# # split balanced df into list by individual
+# tuvu_ex_list <- tuvu_ex %>% 
+#   group_by(tag) %>% 
+#   group_split()
+# 
+# for ( i in 1:length(tuvu_ex_list)){
+#   firstyear <- filter(tuvu_ex_list[[i]], origin == "y") 
+#   firstyear <- firstyear$year - firstyear$age_est
+#   tuvu_ex_list[[i]]$age_est <- tuvu_ex_list[[i]]$year - firstyear
+#   tuvu_ex_list[[i]] <- filter(tuvu_ex_list[[i]], age_est >= 0)
+# }
+# 
+
+
+
+
+tuvu <- tuvu_ex %>% 
+ # select(tag:origin, dead:n, "age" = "age_est") %>%
   mutate(n = ifelse(is.na(n), 0, n)) %>%
   right_join(empty, by = c("tag", "year")) %>% 
   arrange(tag, year) %>%
-  filter(!is.na(year))
+  filter(!is.na(year)) %>%
+  group_by(tag, year) %>%
+  summarize(cap = max(n, na.rm = TRUE)) %>%
+  mutate(cap = ifelse(cap > 0, 1, 0))
+
+
+
+ch <- tuvu %>% select(tag, year, cap) %>%
+  left_join(x %>% filter(!duplicated(tag)) %>% select(tag, "age" = "age_at_first_cap"), by = "tag") 
+
+ # by tag
+ch_tag <-ch %>% 
+  select(-age) %>%
+  mutate(year = as.factor(year)) %>%
+  pivot_wider(id_cols = tag, names_from = year, values_from = cap) 
+
+# by age
+ch_age <- ch %>% 
+  mutate(year = as.factor(year)) %>%
+  pivot_wider(id_cols = c(tag,age), names_from = year, values_from = cap) 
+
+write.csv(ch_age, "data/tuvu_ch.csv")
+read_csv("data/tuvu_ch.csv")
+  
+View(ch_age)
+
+sum(is.na(ch_age))
+x <- ch_age[,3:ncol(ch_age)]
+
+test <- c()
+for (i in 1:nrow(x)){
+  test[i] <-  sum(x[i,])
+}
+which(test == 0)
+
+ch_age[311,]
+
+names(ch)[2:ncol(ch)] <- as.character(2003:2019)
+  
+  
+
 
 tuvu %>% 
   group_by(tag) %>%

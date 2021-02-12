@@ -8,8 +8,6 @@ dat <- read_csv("data/resight.csv")
 table(dat$age) 
 
 
-dat$age <- as.numeric(dat$age)
-
 # calculate age at each resight
 tuvu <- dat %>% 
   group_by(tag, year, origin, age, dead) %>% 
@@ -59,7 +57,7 @@ resight <- tuvu %>%
   group_by(year) %>%
   filter(origin == 'n') %>%
   summarize(n_tagged = sum(n, na.rm = TRUE)) 
-min(resight$year)
+
 
 # saved as jpg, 1500x383
 ggplot() +
@@ -82,6 +80,11 @@ age <- tuvu %>%
   group_by(year, age) %>%
   tally()
 
+tuvu %>% group_by(origin) %>% tally()
+
+tuvu %>% filter(!is.na(origin)) %>% group_by(tag) %>% tally() %>% arrange(desc(n))
+
+tuvu %>% filter(tag == "S11")
 ggplot() +
  geom_segment(data = filter(age, age == 1), aes(x = year-0.49, xend = year-0.49, y = 0, yend = n), colour = grey7) +
  geom_text(data = filter(age, age == 1), aes(x = year-0.43, y = n+0.5), label = "1", size = 2) +
@@ -99,7 +102,7 @@ ggplot() +
 # Movement ----------------------------------------------------------------
 
 # *Isolate SK ----
-
+library(tidyverse)
 tran <- arrow::read_parquet("data/hm_transmitter.parquet")
 
 # rename columns, remove backticks etc.
@@ -108,6 +111,9 @@ tran <- tran %>%
               str_replace_all("-", "_") %>%
               str_replace_all("`", "") %>%
               str_replace_all(":", "_"))
+names(tran)
+
+unique(tran$individual_local_identifier)
 
 # Spatial limits
 

@@ -24,7 +24,7 @@ y <- phi <- matrix(NA, n, n_years, dimnames=list(paste("vulture", 1:n, sep=""),
 for(i in 1:n) {
   y[i, first[i]] <- 1
   for(t in (first[i]+1):n_years) {
-    phi[i, t] <- plogis(phi_lin + 1*year[t] + 1*individual[i] + -0.5*t) # -0.5*t is age, where -0.5 describes the declining survival
+    phi[i, t] <- plogis(1 + phi_lin + 1*year[t] + 1*individual[i] + -0.5*t) # -0.5*t is age, where -0.5 describes the declining survival
     y[i, t] <- rbinom(1, 1, y[i, t-1] * phi[i, t])
   }
 }
@@ -65,17 +65,4 @@ for(i in 1:n) {
 all(apply(y, 1, function(x) length(!is.na(x)) > 1))
 all(apply(y, 1, function(x) sum(x < 1, na.rm=n_years) < 2))
 for(i in 1:n) stopifnot(y[i, first[i]] > 0)
-
-
-
-y          # capture history
-first      # 1st capture year
-last       # year of death
-year       # yearly heterogeneity
-individual # individual heterogeneity
-
-
-
-
-
 

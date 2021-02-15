@@ -8,11 +8,11 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
   <img src="documents/n_individuals.png" width="900" />
 </p>
 
-And transmitter data downloaded from [movebank.org](https://www.movebank.org/cms/webapp?gwt_fragment=page=studies,path=study217784323). Code in ```clean.R``` to isolate SK birds. Because of its size, transmitter data has been compressed to parquet, use ```arrow::read_parquet``` to load.
+Estimates from a model that incorporates age as a categorical fixed effect for survival and resighting probability. Error surrounding the estimates are 95, 80, and 50% HDI (```models/cjs_age_phi_p.stan```)
 
 
 <p float="center">
-  <img src="documents/transmitter_data.png" width="900" />
+  <img src="figures/cjs_age_fixed.png" width="900" />
 </p>
 
 

@@ -53,7 +53,7 @@ cjs_age_fixed_ran_fig.png
 │    ├── cjs_const.jl     <- julia translation of constant parm model, not included in stan scripts
 │    ├── cjs_age.R        <- run cjs_phi_p.stan
 │    ├── cjs_age-time.R   <- run cjs_phi_ran.stan
-│    └── clean_ch.R       <- produce capture history from baded/resight.csv
+│    └── clean_ch.R       <- produce capture history from banded/resight.csv
 │
 ├── /models 				
 │    ├── cjs_phi_p.stan        <- age as categorial fixed effects on survival and detection

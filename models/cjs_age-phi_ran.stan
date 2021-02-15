@@ -63,16 +63,20 @@ transformed data {
     last[i] = last_capture(y[i]);
 }
 parameters {
-  vector<lower=0,upper=1>[max_age] alpha;    // Mean recapture
+  real<lower=0,upper=1> mean_p;    // Mean recapture
   vector<lower=0,upper=1>[max_age] beta;  // Mean survival
+  vector[nind] epsilon;
+  real<lower=0,upper=5> sigma;
+
 }
 transformed parameters {
   matrix<lower=0,upper=1>[nind, n_occ_minus_1] phi;   // Survival
   matrix<lower=0,upper=1>[nind, n_occ_minus_1] p;     // Recapture
   matrix<lower=0,upper=1>[nind, n_occasions] chi;
+  real mu;
 
   // Constraints
-  //mu = logit(beta);
+  mu = logit(mean_p);
   for (i in 1:nind) {
     for (t in 1:(first[i] - 1)) {
       phi[i, t] = 0;
@@ -81,7 +85,7 @@ transformed parameters {
 
     for (t in first[i]:n_occ_minus_1) {
       phi[i, t] = beta[x[i, t]];
-      p[i, t] = alpha[x[i, t]];
+      p[i, t] = inv_logit(mu + epsilon[i]);
     }
   }
 
@@ -92,6 +96,8 @@ model {
   // Uniform priors are implicitly defined.
   //  beta ~ uniform(0, 1);
   //  mean_p ~ uniform(0, 1);
+  epsilon ~ normal(0, sigma);
+
   // Likelihood
   for (i in 1:nind) {
     if (first[i] > 0) {

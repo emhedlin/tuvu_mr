@@ -1,5 +1,4 @@
-// This models is derived from section 12.3 of "Stan Modeling Language
-// User's Guide and Reference Manual"
+
 
 functions {
   int first_capture(int[] y_i) {

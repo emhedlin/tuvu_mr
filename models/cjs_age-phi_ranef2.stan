@@ -63,13 +63,19 @@ transformed data {
     last[i] = last_capture(y[i]);
 }
 parameters {
-  vector<lower=0,upper=1>[max_age] alpha;    // Mean recapture
-  vector<lower=0,upper=1>[max_age] beta;  // Mean survival
+  vector<lower=0,upper=1>[max_age] alpha;           // mean detection
+  vector<lower=0,upper=1>[max_age] beta;  // age-survival
+  real<lower=0,upper=1> mean_phi;         // Mean survival
+  vector[n_occ_minus_1] epsilon;
+  //vector[nind] gamma;
+  real<lower=0,upper=10> sigma_year;
+  //real<lower=0,upper=10> sigma_ind;
 }
 transformed parameters {
   matrix<lower=0,upper=1>[nind, n_occ_minus_1] phi;   // Survival
   matrix<lower=0,upper=1>[nind, n_occ_minus_1] p;     // Recapture
   matrix<lower=0,upper=1>[nind, n_occasions] chi;
+  real mu = logit(mean_phi);
 
   // Constraints
   //mu = logit(beta);
@@ -80,8 +86,8 @@ transformed parameters {
     }
 
     for (t in first[i]:n_occ_minus_1) {
-      phi[i, t] = beta[x[i, t]];
-      p[i, t] = alpha[x[i, t]];
+      phi[i, t] = inv_logit(mu + beta[x[i, t]] + epsilon[t]);
+      p[i, t] = alpha[x[i,t]];
     }
   }
 
@@ -93,6 +99,9 @@ model {
   //  beta ~ uniform(0, 1);
   //  mean_p ~ uniform(0, 1);
   // Likelihood
+  epsilon ~ normal(0, sigma_year);
+  //gamma ~ normal(0, sigma_ind);
+
   for (i in 1:nind) {
     if (first[i] > 0) {
       for (t in (first[i] + 1):last[i]) {

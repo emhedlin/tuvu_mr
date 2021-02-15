@@ -10,13 +10,25 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 
 
 ## Model Results
-
+### phi ~ age, p ~ age
 ```models/cjs_age_phi_p.stan```
+<p float="center">
+  <img src="figures/cjs_age_fixed-eqn.png" width="150" />
+</p>
+
+
 
 
 
 <p float="center">
   <img src="figures/cjs_age_fixed.png" width="900" />
+</p>
+
+### phi ~ fixed age, p ~ random(year)
+```models/cjs_age_phi_ran.stan```
+
+<p float="center">
+  <img src="figures/cjs_age_fixed_ran.png" width="200" />
 </p>
 
 

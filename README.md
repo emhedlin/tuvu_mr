@@ -30,9 +30,11 @@ The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by S
 <p float="center">
   <img src="figures/cjs_age_fixed_ran.png" width="200" />
 </p>
+<p float="center">
+  <img src="figures/cjs_age_fixed_ran_fig.png" width="900" />
+</p>
 
-
-
+cjs_age_fixed_ran_fig.png
 ```
 ├── /data
 │    ├── resight.csv                             <- merged tagging and resights datasets

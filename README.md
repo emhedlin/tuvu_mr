@@ -29,7 +29,15 @@ Estimates from a model that incorporates age as a categorical fixed effect for s
 │    └── 12.Dec.2019_TUVU_All_Sighting_Data.xlsx   <- reference only           
 │
 ├── /scripts 				
-│    └── clean.R       <- produces data/resight_balanced.csv
+│    ├── clean.R          <- legacy      
+│    ├── cjs_const.jl     <- julia translation of constant parm model, not included in stan scripts
+│    ├── cjs_age.R        <- run cjs_phi_p.stan
+│    ├── cjs_age-time.R   <- run cjs_phi_ran.stan
+│    └── clean_ch.R       <- produce capture history from baded/resight.csv
+│
+├── /models 				
+│    ├── cjs_phi_p.stan        <- age as categorial fixed effects on survival and detection
+│    └── cjs_phi_ran.stan      <- age as categorical on survival, ranef for year on detection (account for sampling effort)
 │
 └── /documents 				
      └── tuvu.jpg      <- basic tagging location map displayed on readme

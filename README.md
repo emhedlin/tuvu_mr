@@ -2,6 +2,8 @@
 
 The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by Stuart Houston and Marten Stoffel. Tagging was mostly done with hatch-years, but there was some success trapping adults by waiting until they entered the nest site (usually an abandoned farm house), blocking off all exists, and then sending in some poor soul  to tackle them. Work was mostly completed in Saskatchewan with some tagging in Alberta. Resighting locations are dispersed throughout AB and SK, and all the way down to tuvu wintering grounds in South America. 
 
+Models were made with hatch years only to ensure age was known. A total of 1441 hatch years were tagged over 17 years, with ~370 of them having confirmed resights. The oldest individual was resighted at 16 years, and 17 individuals were confirmed as breeders in the local population at 6 to 8 years of age.
+
 ## Visual Summary
 <p float="center">
   <img src="documents/tuvu.jpg" width="900" />

@@ -65,7 +65,7 @@ transformed data {
 parameters {
   real<lower=0,upper=1> mean_p;    // Mean recapture
   vector<lower=0,upper=1>[max_age] beta;  // Mean survival
-  vector[nind] epsilon;
+  vector[n_occ_minus_1] epsilon;
   real<lower=0,upper=5> sigma;
 
 }
@@ -85,7 +85,7 @@ transformed parameters {
 
     for (t in first[i]:n_occ_minus_1) {
       phi[i, t] = beta[x[i, t]];
-      p[i, t] = inv_logit(mu + epsilon[i]);
+      p[i, t] = inv_logit(mu + epsilon[t]);
     }
   }
 

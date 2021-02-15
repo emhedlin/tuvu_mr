@@ -37,10 +37,10 @@ inits <- lapply(1:nc, function(i){
   list(beta = runif(16, 0, 1),
        mean_p = runif(1, 0, 1),
        mu = runif(1, 0, 1),
-       epsilon = rnorm(stan_data$nind))})
+       epsilon = rnorm(stan_data$n_occasions-1))})
 
 ## MCMC settings
-ni <- 2000
+ni <- 3000
 nt <- 1
 nb <- 1000
 nc <- 4

@@ -2,13 +2,17 @@
 
 The dataset summarizes ~20 years of Turkey Vulture wing-tagging efforts led by Stuart Houston and Marten Stoffel. Tagging was mostly done with hatch-years, but there was some success trapping adults by waiting until they entered the nest site (usually an abandoned farm house), blocking off all exists, and then sending in some poor soul  to tackle them. Work was mostly completed in Saskatchewan with some tagging in Alberta. Resighting locations are dispersed throughout AB and SK, and all the way down to tuvu wintering grounds in South America. 
 
-
+## Visual Summary
 <p float="center">
   <img src="documents/tuvu.jpg" width="900" />
   <img src="documents/n_individuals.png" width="900" />
 </p>
 
-Estimates from a model that incorporates age as a categorical fixed effect for survival and resighting probability. Error surrounding the estimates are 95, 80, and 50% HDI (```models/cjs_age_phi_p.stan```)
+
+## Model Results
+
+```models/cjs_age_phi_p.stan```
+
 
 
 <p float="center">
